@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 import joblib
-import pandas as pd
+import pandas as pd 
 
 app = Flask(__name__)
 
@@ -23,6 +23,10 @@ def mins_to_time(m):
     h = int(m // 60)
     s = int(m % 60)
     return f"{h:02d}:{s:02d}"
+
+@app.route('/health', methods=['GET'])
+def health():
+    return jsonify({"status": "ok", "message": "Service is healthy"}), 200
 
 @app.route('/predict', methods=['POST'])
 def predict():
